@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping("/login")
     public String login(@RequestParam(value ="expired" ,required = false) String expired,
                         @RequestParam(value = "error",required = false) String error, @RequestParam(value = "exception",required = false)String exception, Model model){
-        if("true".equals("expired")){
+        if("true".equals(expired)){
             model.addAttribute("message", "다른 곳에서 접근되었습니다, 연결을 종료합니다");
         }
         model.addAttribute("error", error);
@@ -44,7 +44,7 @@ public class UserController {
         if(authentication != null) {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
-        return "redirect:/";
+        return "redirect:/login/login";
     }
     //회원 가입 페이지 라우팅
     @GetMapping("/join")

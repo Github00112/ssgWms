@@ -43,6 +43,8 @@ public class ProductController {
         log.info("product register ~~이야");
     }
 
+
+
     @PostMapping("/register")
     public String register(@Valid ProductDTO productDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         log.info("Post product register이야~");

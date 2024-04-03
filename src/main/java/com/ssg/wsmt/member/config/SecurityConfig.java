@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 
 import java.io.PrintWriter;
@@ -24,11 +23,6 @@ import java.io.PrintWriter;
 @EnableWebSecurity // 이 클래스가 스프링 시큐리티에서도 관리
 @RequiredArgsConstructor
 public class SecurityConfig {
-
-//    @Bean
-//    public SessionRegistry sessionRegistry(){
-//        return new SessionRegistryImpl();
-//    }
 
     //비밀번호 해쉬 암호화
     @Bean
@@ -73,11 +67,10 @@ public class SecurityConfig {
 
         http
                 .logout((auth -> auth.logoutUrl("/logout") //로그아웃 처리 URL
-                        .logoutSuccessUrl("/") // 로그아웃 성공 시 메인 화면으로 리다이렉션
+                        .logoutSuccessUrl("/login/login") // 로그아웃 성공 시 메인 화면으로 리다이렉션
                         .invalidateHttpSession(true)// 세션 무효화
                         .deleteCookies("JSESSIONID") //로그아웃 시 JSESSIONID 삭제
                 ));
-
         //세션 설정 및 중복 로그인 처리
         http
                 .sessionManagement((auth ->
@@ -108,12 +101,9 @@ public class SecurityConfig {
             // 자바 스크립트 경고창 띄우기
             out.println("<html><head><script>alert('권한이 없습니다.'); location.href='/';</script></head><body></body></html>");
             out.flush();
+
         });
 
     }
 
-//    @Bean
-//    public HttpSessionEventPublisher httpSessionEventPublisher() {
-//        return new HttpSessionEventPublisher();
-//    }
 }

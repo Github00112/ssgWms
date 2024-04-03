@@ -20,6 +20,8 @@
                 <div class="search-section">
                     <div class="d-flex">
                         <form action="/settlement/list" method="post">
+                            <input type="hidden" th:name="_csrf" th:value="${_csrf.token}"/>
+
                             <label>기간: </label>
                             <select name="startyear">
                                 <option value="2020">2020년</option>

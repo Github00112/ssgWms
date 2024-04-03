@@ -5,6 +5,8 @@
       layout:decorate="~{layout/layout1}">
 
 <head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>발주 요청</title>
     <link href="/assets/css/styleMgtOrders.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

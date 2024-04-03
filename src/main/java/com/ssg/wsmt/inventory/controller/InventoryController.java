@@ -26,9 +26,6 @@ import java.util.List;
 public class InventoryController {
     private final WarehouseService warehouseService;
     private final InventoryService inventoryService;
-    
-
-
 
     @PostMapping("/warehouseCreate")
     public String postCreate(@ModelAttribute WarehouseCreateDTO warehouseDTO) {
